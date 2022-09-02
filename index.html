@@ -15,36 +15,48 @@
   </head>
   <body class="container mx-auto">
     <header>
-        <!-- navbar -->
-        <div class="navbar bg-base-100 container mx-auto pt-5">
-            <div class="flex-1">
-              <a class="text-xl uppercase font-semibold"><span class="bg-indigo-500 text-white px-3 py-2 rounded">New's</span>&nbsp; <span class="text-indigo-500">Era</span></a>
-            </div>
-            <div class="flex-none gap-2">
-              <div class="flex list-none uppercase font-bold">
-                <li class="px-3 hover:text-indigo-500 hover:underline hover:decoration-4"><a href="">News</a></li>
-                <li class="px-3 hover:text-indigo-500 hover:underline hover:decoration-4"><a href="">Blog</a></li>
-              </div>
-              <div class="dropdown dropdown-end">
-                <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-                  <div class="w-10 rounded-full">
-                    <img src="https://placeimg.com/80/80/people" />
-                  </div>
-                </label>
-              </div>
-            </div>
+      <!-- navbar -->
+      <div class="navbar bg-base-100 container mx-auto pt-5">
+        <div class="flex-1">
+          <a class="text-xl uppercase"
+            ><span class="bg-indigo-500 text-white px-3 py-2 rounded"
+              >New's</span
+            >&nbsp; <span class="text-indigo-500">Era</span></a
+          >
+        </div>
+        <div class="flex-none gap-2">
+          <div class="flex list-none uppercase font-bold">
+            <li
+              class="px-3 hover:text-indigo-500 hover:underline hover:decoration-4"
+            >
+              <a href="">News</a>
+            </li>
+            <li
+              class="px-3 hover:text-indigo-500 hover:underline hover:decoration-4"
+            >
+              <a href="">Blog</a>
+            </li>
           </div>
+          <div class="dropdown dropdown-end">
+            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+              <div class="w-10 rounded-full">
+                <img src="https://placeimg.com/80/80/people" />
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
 
-          <div class="divider"></div> 
+      <div class="divider"></div>
 
-          <!-- menu  -->
+      <!-- menu  -->
 
-          <ul class="menu menu-horizontal bg-base-100 rounded-box p-2 flex justify-center">
-            <li><a>Item 1</a></li>
-            <li><a>Item 2</a></li>
-            <li><a>Item 3</a></li>
-          </ul>
-
+      <ul
+        id="menu-div"
+        class="menu bg-base-100 rounded-box menu-horizontal flex justify-center p-2"
+      ></ul>
     </header>
+
+    <script src="app.js"></script>
   </body>
 </html>
