@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="autumn">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The New's Era</title>
     <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
+    <!-- font-awesome link  -->
+    <script
+      src="https://kit.fontawesome.com/d3d8144546.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- daisy ui link  -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@2.24.0/dist/full.css"
       rel="stylesheet"
       type="text/css"
     />
+    <!-- tailwind css link  -->
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body class="container mx-auto">
@@ -18,21 +25,21 @@
       <!-- navbar -->
       <div class="navbar bg-base-100 container mx-auto pt-5">
         <div class="flex-1">
-          <a class="text-xl uppercase"
-            ><span class="bg-indigo-500 text-white px-3 py-2 rounded"
+          <a class="sm:text-xl uppercase"
+            ><span class="bg-indigo-600 text-white px-3 py-2 rounded"
               >New's</span
-            >&nbsp; <span class="text-indigo-500">Era</span></a
+            >&nbsp; <span class="text-indigo-600">Era</span></a
           >
         </div>
         <div class="flex-none gap-2">
-          <div class="flex list-none uppercase font-bold">
+          <div class="flex list-none uppercase font-semibold">
             <li
-              class="px-3 hover:text-indigo-500 hover:underline hover:decoration-4"
+              class="px-3 hover:text-indigo-600 hover:underline hover:decoration-2"
             >
               <a href="">News</a>
             </li>
             <li
-              class="px-3 hover:text-indigo-500 hover:underline hover:decoration-4"
+              class="px-3 hover:text-indigo-600 hover:underline hover:decoration-2"
             >
               <a href="">Blog</a>
             </li>
@@ -53,9 +60,28 @@
 
       <ul
         id="menu-div"
-        class="menu bg-base-100 rounded-box menu-horizontal flex justify-center p-2"
+        class="text-xl menu-horizontal flex justify-center p-2 flex-col lg:flex-row"
       ></ul>
     </header>
+
+    <!-- main menu  -->
+    <main>
+      <section class="mt-8">
+        <!-- card count -->
+        <div
+          style="background-color: white"
+          class="card w-11/12 lg:w-10/12 mx-auto"
+        >
+          <div class="py-5 rounded-xl">
+            <h2 class="text-center font-semibold text-xl">4 items found for category Entertainment</h2>
+          </div>
+        </div>
+
+        <!-- card  -->
+        <div id="card-div">
+        </div>
+      </section>
+    </main>
 
     <script src="app.js"></script>
   </body>
