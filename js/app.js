@@ -36,6 +36,7 @@ const loadCategoryData = async (id, idName) => {
 };
 
 const displayCategoryData = (allCategoryData, idName) => {
+  const sorting = allCategoryData.sort(function(a, b){return b.total_view - a.total_view});
   const card_div = document.getElementById("card-div");
   card_div.innerHTML = ``;
 
@@ -53,7 +54,7 @@ const displayCategoryData = (allCategoryData, idName) => {
     empty_div.classList.add('h-44');
   }
 
-  allCategoryData.forEach((categoryData) => {
+  sorting.forEach((categoryData) => {
     const create_div = document.createElement("div");
     create_div.classList.add(
       "card",
