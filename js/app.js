@@ -41,13 +41,16 @@ const displayCategoryData = (allCategoryData, idName) => {
 
   let card_count = document.getElementById("card-count");
   let category_name = document.getElementById("category-name");
+  const empty_div = document.getElementById('empty-div')
 
   if (allCategoryData.length > 0) {
     card_count.innerText = allCategoryData.length;
     category_name.innerText = idName;
+    empty_div.classList.remove('h-44');
   } else {
     card_count.innerText = allCategoryData.length;
     category_name.innerText = idName;
+    empty_div.classList.add('h-44');
   }
 
   allCategoryData.forEach((categoryData) => {
