@@ -27,7 +27,7 @@ const displayCategory = (categories) => {
   });
 };
 
-const loadCategoryData = async (id,idName) => {
+const loadCategoryData = async (id, idName) => {
   spinner(true);
   const url = `https://openapi.programming-hero.com/api/news/category/${id} `;
   const res = await fetch(url);
@@ -111,7 +111,9 @@ const displayCategoryData = (allCategoryData, idName) => {
       </div>
       <div class="card-actions justify-end">
         <label for="my-modal-3"
-          class="btn modal-button bg-indigo-600 text-white border-0 hover:bg-indigo-600" onclick ="modalDetails('${categoryData._id}')"
+          class="btn modal-button bg-indigo-600 text-white border-0 hover:bg-indigo-600" onclick ="modalDetails('${
+            categoryData._id
+          }')"
         >
           Show Details
         </label>
@@ -133,15 +135,38 @@ const spinner = (isLoading) => {
   }
 };
 
-const modalDetails = async(news_id) => {
-  const url = `https://openapi.programming-hero.com/api/news/${news_id}`
+const modalDetails = async (news_id) => {
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
   const res = await fetch(url);
   const data = await res.json();
-  const details = (data.data[0]);
+  const details = data.data[0];
   console.log(details);
+
   const modal_image = document.getElementById("modal-image");
-  modal_image.src = details.image_url
+  modal_image.src = details.image_url;
+
+  const modal_title = document.getElementById("modal-title");
+  modal_title.innerText = details.title;
+
+  const modal_details = document.getElementById("modal-details");
+  modal_details.innerText = details.details;
+
+  const author_img = document.getElementById("author-img");
+  author_img.src = details.author.img;
+
+  const author_name = document.getElementById("author-name");
+  author_name.innerText = details.author.name
+    ? details.author.name
+    : "Author name not found";
+
+  const published_date = document.getElementById("published-date");
+  published_date.innerText = details.author.published_date
+    ? details.author.published_date.slice(0, 11)
+    : "No Publish Date Found";
+
+  const total_view = document.getElementById("total-view");
+  total_view.innerText = details.total_view ? details.total_view : 0;
 };
 
 loadCategory();
-loadCategoryData("01","Breaking News");
+loadCategoryData("01", "Breaking News");

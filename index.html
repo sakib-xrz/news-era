@@ -91,28 +91,47 @@
 
       <!-- modal -->
       <section>
-
         <input type="checkbox" id="my-modal-3" class="modal-toggle" />
         <div class="modal">
           <div style="background-color: white" class="modal-box relative">
             <label
               for="my-modal-3"
-              class="btn btn-sm btn-circle absolute right-2 top-2"
+              class="btn btn-sm btn-circle bg-indigo-600 border-0 text-white absolute right-2 top-2 z-10 hover:bg-indigo-600"
               >✕</label
             >
-            <img
-              class="object-cover h-50 w-100 mx-auto rounded mb-5"
-              id="modal-image"
-              src=""
-              alt=""
-            />
-            <h3 class="text-lg font-bold">
-              Congratulations random Internet user!
-            </h3>
-            <p class="py-4">
-              You've been selected for a chance to get one year of subscription
-              to use Wikipedia for free!
-            </p>
+
+            <div style="background-color: white" class="card w-full mx-auto">
+              <figure class="px-5 pt-5">
+                <img id="modal-image" src="" alt="" class="rounded-xl" />
+              </figure>
+              <div class="card-body items-center text-center">
+                <h2 id="modal-title" class="card-title"></h2>
+                <p id="modal-details"></p>
+                <div
+                  class="flex flex-col w-full justify-between items-center mt-5"
+                >
+                  <div>
+                    <div>
+                      <div class="avatar">
+                        <div class="w-12 rounded-full">
+                          <img id="author-img" src="" />
+                        </div>
+                      </div>
+                      <div>
+                        <h4 id="author-name" class="font-semibold"></h4>
+                        <p id="published-date"></p>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 class="mt-5">
+                        <i class="fa-regular fa-eye"></i>
+                        <span id="total-view" class="font-bold"></span>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
