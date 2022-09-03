@@ -36,22 +36,24 @@ const loadCategoryData = async (id, idName) => {
 };
 
 const displayCategoryData = (allCategoryData, idName) => {
-  const sorting = allCategoryData.sort(function(a, b){return b.total_view - a.total_view});
+  const sorting = allCategoryData.sort(function (a, b) {
+    return b.total_view - a.total_view;
+  });
   const card_div = document.getElementById("card-div");
   card_div.innerHTML = ``;
 
   let card_count = document.getElementById("card-count");
   let category_name = document.getElementById("category-name");
-  const empty_div = document.getElementById('empty-div')
+  const empty_div = document.getElementById("empty-div");
 
   if (allCategoryData.length > 0) {
     card_count.innerText = allCategoryData.length;
     category_name.innerText = idName;
-    empty_div.classList.remove('h-44');
+    empty_div.classList.remove("h-44");
   } else {
     card_count.innerText = allCategoryData.length;
     category_name.innerText = idName;
-    empty_div.classList.add('h-44');
+    empty_div.classList.add("h-44");
   }
 
   sorting.forEach((categoryData) => {
