@@ -9,13 +9,15 @@ const displayCategory = (categories) => {
   const menu_div = document.getElementById("menu-div");
 
   categories.forEach((category) => {
+    console.log(category);
     const create_li = document.createElement("li");
     create_li.classList.add(
       "px-4",
       "font-semibold",
       "hover:bg-indigo-600",
       "hover:text-white",
-      "rounded"
+      "rounded",
+      "cursor-pointer"
     );
     create_li.innerHTML = `<p class ="text-center px-3 py-3" onclick = "loadCategoryData('${category.category_id}')">${category.category_name}</p>`;
     menu_div.appendChild(create_li);
@@ -31,10 +33,10 @@ const loadCategoryData = async (id) => {
 
 const displayCategoryData = (allCategoryData) => {
   const card_div = document.getElementById("card-div");
-  card_div.innerHTML = ``
+  card_div.innerHTML = ``;
 
   allCategoryData.forEach((categoryData) => {
-    console.log(categoryData);
+    // console.log(categoryData);
     const create_div = document.createElement("div");
     create_div.classList.add(
       "card",
@@ -57,14 +59,15 @@ const displayCategoryData = (allCategoryData) => {
     alt="Movie"
   />
   <div class="card-body">
-    <h2 class="font-bold text-3xl">${categoryData.title}</h2>
-    <p class="text-gray-600">
-      From our favourite UK influencers to the best missives from Milan
-      and the coolest New Yorkers, read on some of the best fashion
-      blogs out there, and for even more inspiration, do head to our
-      separate black fashion influencer roundup. Fancy some shopping
-      deals? Check out these amazing sales: Zara Black Friday, ASOS
-      Black Friday, Missoma Black Friday and Gucci Black Friday...
+    <h2 class="font-bold text-2xl md:text-3xl">${categoryData.title}</h2>
+    <p style = "overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    max-height: 100px;" 
+    class="text-gray-600">
+      ${categoryData.details}
     </p>
 
     <div class="flex flex-col lg:flex-row w-full justify-between items-center mt-5">
@@ -76,11 +79,13 @@ const displayCategoryData = (allCategoryData) => {
         </div>
         <div class="pl-4">
           <h4 class="font-semibold">${categoryData.author.name}</h4>
-          <p>${categoryData.author.published_date}</p>
+          <p>${categoryData.author.published_date.slice(0,11)}</p>
         </div>
       </div>
       <div class="mb-5">
-        <h3><i class="fa-regular fa-eye"></i> <span class="font-bold">${categoryData.total_view}</span></h3>
+        <h3><i class="fa-regular fa-eye"></i> <span class="font-bold">${
+          categoryData.total_view
+        }</span></h3>
       </div>
       <div class="card-actions justify-end">
         <button
@@ -96,3 +101,4 @@ const displayCategoryData = (allCategoryData) => {
 };
 
 loadCategory();
+loadCategoryData('01')
