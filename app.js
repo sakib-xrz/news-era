@@ -1,15 +1,18 @@
 const loadCategory = async () => {
-  const url = `https://openapi.programming-hero.com/api/news/categories`;
-  const res = await fetch(url);
-  const data = await res.json();
-  displayCategory(data.data.news_category);
+  try {
+    const url = `https://openapi.programming-hero.com/api/news/categories`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayCategory(data.data.news_category);
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const displayCategory = (categories) => {
   const menu_div = document.getElementById("menu-div");
 
   categories.forEach((category) => {
-    console.log(category);
     const create_li = document.createElement("li");
     create_li.classList.add(
       "px-4",
@@ -19,24 +22,35 @@ const displayCategory = (categories) => {
       "rounded",
       "cursor-pointer"
     );
-    create_li.innerHTML = `<p class ="text-center px-3 py-3" onclick = "loadCategoryData('${category.category_id}')">${category.category_name}</p>`;
+    create_li.innerHTML = `<p class ="text-center px-3 py-3" onclick = "loadCategoryData('${category.category_id}','${category.category_name}')">${category.category_name}</p>`;
     menu_div.appendChild(create_li);
   });
 };
 
-const loadCategoryData = async (id) => {
+const loadCategoryData = async (id,idName) => {
+  spinner(true);
   const url = `https://openapi.programming-hero.com/api/news/category/${id} `;
   const res = await fetch(url);
   const data = await res.json();
-  displayCategoryData(data.data);
+  displayCategoryData(data.data, idName);
 };
 
-const displayCategoryData = (allCategoryData) => {
+const displayCategoryData = (allCategoryData, idName) => {
   const card_div = document.getElementById("card-div");
   card_div.innerHTML = ``;
 
+  let card_count = document.getElementById("card-count");
+  let category_name = document.getElementById("category-name");
+
+  if (allCategoryData.length > 0) {
+    card_count.innerText = allCategoryData.length;
+    category_name.innerText = idName;
+  } else {
+    card_count.innerText = allCategoryData.length;
+    category_name.innerText = idName;
+  }
+
   allCategoryData.forEach((categoryData) => {
-    // console.log(categoryData);
     const create_div = document.createElement("div");
     create_div.classList.add(
       "card",
@@ -78,27 +92,56 @@ const displayCategoryData = (allCategoryData) => {
           </div>
         </div>
         <div class="pl-4">
-          <h4 class="font-semibold">${categoryData.author.name}</h4>
-          <p>${categoryData.author.published_date.slice(0,11)}</p>
+          <h4 class="font-semibold">${
+            categoryData.author.name
+              ? categoryData.author.name
+              : "Author name not found"
+          }</h4>
+          <p>${
+            categoryData.author.published_date
+              ? categoryData.author.published_date.slice(0, 11)
+              : "No Publish Date Found"
+          }</p>
         </div>
       </div>
       <div class="mb-5">
         <h3><i class="fa-regular fa-eye"></i> <span class="font-bold">${
-          categoryData.total_view
+          categoryData.total_view ? categoryData.total_view : 0
         }</span></h3>
       </div>
       <div class="card-actions justify-end">
-        <button
-          class="btn bg-indigo-600 text-white border-0 hover:bg-indigo-600"
+        <label for="my-modal-3"
+          class="btn modal-button bg-indigo-600 text-white border-0 hover:bg-indigo-600" onclick ="modalDetails('${categoryData._id}')"
         >
           Show Details
-        </button>
+        </label>
       </div>
     </div>
   </div>`;
     card_div.appendChild(create_div);
+    // console.log(categoryData._id);
   });
+  spinner(false);
+};
+
+const spinner = (isLoading) => {
+  const loader = document.getElementById("spinner");
+  if (isLoading) {
+    loader.classList.remove("hidden");
+  } else {
+    loader.classList.add("hidden");
+  }
+};
+
+const modalDetails = async(news_id) => {
+  const url = `https://openapi.programming-hero.com/api/news/${news_id}`
+  const res = await fetch(url);
+  const data = await res.json();
+  const details = (data.data[0]);
+  console.log(details);
+  const modal_image = document.getElementById("modal-image");
+  modal_image.src = details.image_url
 };
 
 loadCategory();
-loadCategoryData('01')
+loadCategoryData("01","Breaking News");
