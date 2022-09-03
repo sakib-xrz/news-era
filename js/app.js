@@ -23,7 +23,7 @@ const displayCategory = (categories) => {
       "cursor-pointer"
     );
     create_li.innerHTML = `<p class ="text-center px-3 py-3" onclick = "loadCategoryData('${category.category_id}','${category.category_name}')">${category.category_name}</p>`;
-    menu_div.appendChild(create_li);
+    create_li.style = menu_div.appendChild(create_li);
   });
 };
 
